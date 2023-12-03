@@ -1,0 +1,243 @@
+body {
+  background-color: #655f5f;
+  opacity: 80%;
+  min-height: 90vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 100px; //height of the footer
+  box-sizing: border-box;
+}
+
+#lbl_holder{
+  background-color: #000000;
+  opacity: 70%;
+  position: absolute;
+  border: none;;
+  border-radius: 10px;
+  border-color: #bdbdbd;
+  height: 90vh;
+  width: 100%;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+#lbl_userAgreementContent{
+  background-color: #ffffff;
+  position: absolute;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  border: 5px #bdbdbd;
+  height: 75%;
+  width: 80%;
+  top: 7%;
+  left: 5%;
+  font-size: 13px;
+  color: #000000;
+  text-align: left;
+
+}
+
+span.content {
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 20px;
+  white-space: pre-wrap;
+  padding-right: 5%;
+}
+#chk_doNotDisplayAgain{
+  font-size: 15px ;
+  color: #ffffff;
+  position:absolute;
+  top: 90%;
+  left: 5%;
+}
+
+button {
+  border-radius: 10px;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  border: 5px #bdbdbd;
+  width: 100px;
+  height: 40px;
+  margin: 10px;
+}
+
+.button:hover{
+  background-color: #ffffff;
+  opacity: 100%;
+}
+.button:active {
+  background-color: #d3dad4;
+  box-shadow: 0 3px #666;
+  transform: translateY(2px);
+}
+
+
+#btn_disAgree, #btn_agree{
+  position:relative;
+  top: 87%;
+  left: 40%;
+}
+
+#btn_home, #btn_goGift{
+position: relative;
+top: 550px;
+left: 40%;
+}
+.cls_input{
+  border-radius: 10px;
+  box-shadow: inset 0px 2px 2px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  border: 5px #bdbdbd;
+  font-size: 13px;
+}
+
+#txt_loginName{
+  width: 209px;
+  height: 40px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#btn_login{
+  width: 213px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-55%, 50%);
+}
+
+#lbl_copyright{
+  color: #ffffff;
+  position: relative;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 30px;
+  right: 10px;
+}
+
+h1{
+  color: #ffffff;
+  text-align: center;
+  font-family: 'PT Sans', sans-serif;
+
+}
+
+#lbl_confirmContent{
+  color: #ffffff;
+  font-size: 15px;
+  text-align: left;
+  height: 60%;
+  width: 80%;
+  position:absolute;
+  left: 10%;
+  top: 25%;
+}
+
+#lbl_about{
+  color: #ffffff;
+  font-size: 15px;
+  text-align: left;
+  height: 60%;
+  width: 80%;
+  position:absolute;
+  left: 10%;
+  top: 35%;
+  padding: inherit;
+
+}
+
+#lbl_contact{
+  color: #ffffff;
+  font-size: 15px;
+  text-align: left;
+  height: 60%;
+  width: 80%;
+  position:absolute;
+  left: 10%;
+  top: 15%;
+}
+
+#img_about{
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+  position: fixed;
+  left: 15%;
+  top: 17%;
+  padding: 10px;
+  border: #dbd8e6;
+  object-fit: contain;
+
+}
+
+#img_background{
+  height: 250px;
+  width:80%;
+  padding: 5px;
+  border-radius: 10px;
+  position:relative;
+  opacity: 100%;
+  left: 10%;
+  border: #dbd8e6;
+  object-fit: cover;  /* crop the image */
+  /* border-top-left-radius: 140px 50%;
+  border-bottom-left-radius: 140px 50%; */
+}
+
+#img_logo {
+  height: 30px;
+  width: 40px;
+}
+#img_cart{
+  height: 30px;
+  width: 30px;
+  right: 3%;
+  top: 10px;
+  position: absolute;
+}
+
+#tbl_menu{
+  color: #ffffff;
+  font-family: 'PT Sans', sans-serif;
+}
+
+#nav_bar{
+  background-color:#655f5f;
+  position: fixed;
+  width: 100%;
+  transition: top 0.3s; /* Transition effect when sliding down (and up) */
+}
+
+table a:link, a:visited, a:active {
+  color: #ffffff;
+  text-decoration: none;
+}
+table a:hover{
+  color: #c8bde9;
+}
+
+a:link, a:visited, a:active {
+  /* color: #cdb3b3; */
+}
+a:hover{
+  color: #c8bde9;
+}
+/* fix the color of the link for skype and email link */
+a:-webkit-any-link {
+  color: #ffffff;
+}
+
+main{
+  min-height: calc(100vh-130px);
+}
+
+.menu{
+  padding: 5px;
+}
+
+

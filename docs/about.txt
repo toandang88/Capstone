@@ -1,0 +1,11 @@
+Hello! I'm a dedicated and versatile professional with a rich background in both military service and the software engineering industry. Currently serving as an Infantry Soldier in the US Army, I bring over three years of experience in this challenging and dynamic role.
+
+My journey in software engineering has seen me contribute significantly to various projects. I've served as a Senior Software Automation Engineer at Harvey Nash in Vietnam, handling responsibilities such as Selenium scripting, performance testing, and team management. In my role as a Senior Software Automation QC at Swisslog Warehouse & Distribution Solutions, I played a crucial part in ensuring the quality of software automation.
+
+Earlier in my career, I served as a Principal QC Engineer at Terralogic, where I managed the DTS Headphone:X project, demonstrating proficiency in technologies like Selenium TestNG, Jmeter, and SoapUI. My responsibilities included team management, test case design, regression testing, and defect submission.
+
+I've also contributed to LogiGear Corporation as a Software Automation Engineer, working on projects like Cisco ūmi telepresence, Cisco Pure Network, and McAfee SaaS Email Protection. This experience allowed me to hone my skills in automation scripting and contribute to the development of innovative software solutions.
+
+My educational background includes studies in Computer Science at Ho Chi Minh University of Industry and training as a Software Engineer at Ly Tu Trong College. Currently, I am expanding my skill set by learning full-stack web development using JavaScript.
+
+With a diverse professional background encompassing military service and extensive experience in software engineering, I bring a unique blend of leadership, technical expertise, and adaptability to any team or project.
