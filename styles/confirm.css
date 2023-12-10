@@ -1,0 +1,16 @@
+#btn_home, #btn_goGift{
+  position: relative;
+  top: 550px;
+  left: 40%;
+  }
+
+  #lbl_confirmContent{
+    color: #ffffff;
+    font-size: 15px;
+    text-align: left;
+    height: 60%;
+    width: 80%;
+    position:absolute;
+    left: 5%;
+    top: 20%;
+  }

@@ -1,0 +1,38 @@
+#img_about{
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+  position: absolute;
+  left: 15%;
+  top: 15%;
+  padding: 10px;
+  border: #dbd8e6;
+  object-fit: contain;
+
+}
+
+#img_background{
+  height: 250px;
+  width:80%;
+  padding: 5px;
+  border-radius: 10px;
+  position:relative;
+  opacity: 100%;
+  left: 10%;
+  border: #dbd8e6;
+  object-fit: cover;  /* crop the image */
+  /* border-top-left-radius: 140px 50%;
+  border-bottom-left-radius: 140px 50%; */
+}
+#lbl_about{
+  color: #ffffff;
+  font-size: 15px;
+  text-align: left;
+  height: 60%;
+  width: 80%;
+  position:absolute;
+  left: 10%;
+  top: 40%;
+  padding: inherit;
+
+}
