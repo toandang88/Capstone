@@ -2,8 +2,7 @@
 Welcome to ThunderTalk!</h2>
 <h3>By using ThunderTalk (the "Service"), you agree to be bound by the following terms and conditions:</h3>
 <h4>Eligibility:</h4>
-    You must be at least 13 years old to use our Service. If you are under 13, please do
-not attempt to register or use our Service.
+    You must be at least 13 years old to use our Service. If you are under 13, please do not attempt to register or use our Service.
 <h4>Content Policy:</h4>
     a. Users are prohibited from posting, uploading, or sharing explicit or pornographic content.
     b. Users are responsible for the content they post and must not engage in any illegal, harmful, or offensive activities.

@@ -8,3 +8,6 @@ const confirmationContentElement = document.getElementById(
 );
 
 loadTXTContent(confirmationContentPath, confirmationContentElement);
+document.querySelector(".fa-bars").addEventListener("click", () => {
+  document.querySelector("nav > table").classList.toggle("tbl_menu");
+});

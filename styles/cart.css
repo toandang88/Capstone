@@ -1,0 +1,11 @@
+#flx_cartContainer{
+  position: absolute;
+  height: 230px;
+  width: 100%;
+  top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+  border-radius: 10px;
+}

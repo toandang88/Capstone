@@ -17,8 +17,9 @@ window.loadMenu = function() {
     const menu = document.createElement("div");
 
     menu.innerHTML = `
-    <div id="nav_bar">
-      <table id="tbl_menu">
+    <nav id="nav_bar">
+    <i class="fa-sharp fa-solid fa-bars fa-xl" style="color: #6d9cee;"></i>
+      <table class="tbl_menu">
         <tr>
           <td>
             <a href="home.html"><img id="img_logo" src="/img/icons/thundertalk.png"></a>
@@ -45,11 +46,11 @@ window.loadMenu = function() {
             <div><a class="menu" href="contact.html">Contact</a></div>
           </td>
           <td>
-            <img id="img_cart" src="/img/icons/cart.png">
+            <a href="cart.html"><img id="img_cart" src="/img/icons/cart.png"></a>
           </td>
         </tr>
       </table>
-    </div>
+    </nav>
     `;
 
     const footer = document.createElement("footer");

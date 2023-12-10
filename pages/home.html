@@ -6,16 +6,21 @@
   <title>Thunder Talk</title>
   <link rel="icon" href="/img/icons/thundertalk.png" type="image/png">
   <link rel="stylesheet" href="/styles/main.css">
+  <link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet"
+  />
 </head>
 <body>
   <main>
-  <div id="lbl_holder">
-    <input type="text" class="cls_input" id="txt_loginName" placeholder="Please enter your name" maxlength="25" required>
-    <button class="button" type="button" id="btn_login">Login
-    </button>
-  </div>
-</main>
-  </script>
+    <div id="lbl_holder">
+      <form action="../pages/profile.html">
+      <input type="text" class="cls_input" id="txt_loginName" placeholder="Please enter your name" maxlength="25" required>
+      <button class="link_styles button" type="submit" id="btn_login">Login
+      </button>
+    </form>
+    </div>
+  </main>
  <script type="module" src="/scripts/home.js"></script>
 </body>
 </html>
