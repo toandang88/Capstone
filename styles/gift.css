@@ -1,8 +1,12 @@
-
+#body_container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 #flx_giftContainer{
   position: absolute;
   height: 230px;
-  width: 100%;
+  width: 1000px;
   top: 50px;
   display: flex;
   flex-direction: row;
@@ -31,13 +35,13 @@
 }
 
 
-#gift_border{
+/* #gift_border{
   border-style: solid;
   color: #ffffff;
   width: 1500px;
   height: 200px;
   position: absolute;
-}
+} */
 
 #img_gift{
   height: 150px;
@@ -92,13 +96,16 @@
 }
 
 #description{
-  width: 500px;
+  width: 490px;
   height: 160px;
   border-radius: 5px;
-  background-color: #ffffff;
   white-space: pre-wrap;
   overflow-x:hidden;
-  position: absolute;;
+  position: absolute;
+  color:white;
+  border: 1px solid #8c7979;
+  padding: 5px 5px 0 5px;
+  background-color:#655f5f;
 
 }
 

@@ -11,3 +11,11 @@ loadTXTContent(confirmationContentPath, confirmationContentElement);
 document.querySelector(".fa-bars").addEventListener("click", () => {
   document.querySelector("nav > table").classList.toggle("tbl_menu");
 });
+
+document.getElementById("btn_home").addEventListener("click", function() {
+  window.location.href = "../pages/home.html";
+});
+
+document.getElementById("btn_goGift").addEventListener("click", function() {
+  window.location.href = "../pages/gifts.html";
+});
