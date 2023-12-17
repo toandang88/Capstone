@@ -262,6 +262,7 @@
 
   #slt_states{
     height: 25px;
+    width: 100%;
     border-radius: 5px;
     border: 1px solid #cbb5b5bd;
     font-size: 13px;

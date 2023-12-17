@@ -2,26 +2,6 @@ import * as common from "./common.js";
 
 window.loadMenu();
 
-//Load States for select box
-function loadStates() {
-  const stateSelect = document.getElementById("slt_states");
-  if (stateSelect) {
-    stateSelect.addEventListener("load", function() {
-      fetch("/docs/states.txt")
-        .then(response => response.text())
-        .then(data => {
-          const states = data.split("\n"); //split states by new line
-
-          states.forEach(state => {
-            const option = document.createElement("option");
-            option.text = state;
-            stateSelect.add(option);
-          });
-        })
-        .catch(error => console.error("Error fetching data:", error));
-    });
-  }
-}
 function switchEditStatus() {
   var editStatus;
 
@@ -101,3 +81,24 @@ function usrUpdateCancel() {
 document.querySelector(".fa-bars").addEventListener("click", () => {
   document.querySelector("nav > table").classList.toggle("tbl_menu");
 });
+
+//Load States for select box
+function loadStates() {
+  const stateSelect = document.getElementById("slt_states");
+  if (stateSelect) {
+    stateSelect.addEventListener("load", function() {
+      fetch("/docs/states.txt")
+        .then(response => response.text())
+        .then(data => {
+          const states = data.split("\n"); //split states by new line
+
+          states.forEach(state => {
+            const option = document.createElement("option");
+            option.text = state;
+            stateSelect.add(option);
+          });
+        })
+        .catch(error => console.error("Error fetching data:", error));
+    });
+  }
+}

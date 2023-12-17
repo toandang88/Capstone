@@ -1,27 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thunder Talk</title>
-  <link rel="icon" href="/img/icons/thundertalk.png" type="image/png">
-  <link rel="stylesheet" href="/styles/main.css">
-  <link rel="stylesheet" href="/styles/cart.css">
-  <link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-  rel="stylesheet"
-  />
-</head>
-<body>
-  <main>
+import html from "html-literal";
+import itemPhoto from "../../assets/img/gifts/debossed.png";
+import cancelIcon from "../../assets/img/icons/close.png";
+import submitIcon from "../../assets/img/icons/ok-16.png";
+export default () => html`
+<main>
     <div class="flx_cartContainer" >
       <hr>
       <div id="cartDetail_Container">
-        <div id="img_Container" class="border_topBottom">
-          <img id="img_gift" src="../img/gifts/debossed.png">
+        <div id="img_CartContainer" >
+          <img id="img_Cart" src="${itemPhoto}">
         </div>
-        <div id="gift_description">
-          <div id="productNamePrice">
+        <div id="cart_description">
+          <div id="Cart_productNamePrice">
             <div id="productName">Wrist band - blue -custommmmmmmdsadadsdsdfafafa</div>
             <div id="price">$15.00</div>
             <select class="cls_input" id="sel_quantity" name="quantity">
@@ -64,7 +54,7 @@
       <hr>
       <div id="shipping_container">
         <h2>Shipping Info</h2>
-        <form id="usr_data">
+        <form id="cart_userData">
           <label for="txt_userName" name="userName">User name</label>
           <input type="text" class="cls_input cls_userData" id="txt_userName" placeholder="User Name" required>
           <label for="txt_email" name="email">Email Address</label>
@@ -87,13 +77,10 @@
             </div>
           </div>
           <div class="editContainer">
-            <div id="lnk_cancelEdit"  class="link_styles"><img src="../img/icons/close.png"></img>Cancel</div>
-            <button type="submit" id="lnk_saveUserData"  class="link_styles"><img src="../img/icons/ok-16.png"></img>Confirm</button>
+            <div id="lnk_cancelEdit"  class="link_styles"><img src="${cancelIcon}"></img>Cancel</div>
+            <button type="submit" id="lnk_saveUserData"  class="link_styles"><img src="${submitIcon}"></img>Confirm</button>
           </div>
         </form>
       </div>
     </div>
-  </main>
- <script type="module" src="/scripts/contact.js"></script>
-</body>
-</html>
+`;

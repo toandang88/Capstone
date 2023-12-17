@@ -1,13 +1,31 @@
+html,body{
+  /* height: 100%; */
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: #0d0c0cd7;
   opacity: 80%;
-  /* background-color: #655f5f;
-  opacity: 80%; */
-  min-height: 90vh;
+  min-height: 100vh;
   position: relative;
   margin: 0;
   font-family: 'PT Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
 }
+footer{
+  background-color: #655f5f;
+  text-align: center;
+  width: 100%;
+  opacity: 80%;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  color: white;
+  /* margin-top: auto; */
+}
+
 
 #lbl_holder{
 
@@ -15,7 +33,7 @@ body {
   border: none;;
   border-radius: 10px;
   border-color: #bdbdbd;
-  height: 90vh;
+  min-height: 100vh;
   width: 100%;
   top: 50px;
   display: flex;
@@ -39,8 +57,9 @@ body {
   justify-content: flex-end;
  }
 
-#box_agreementContent{
-  background-color: #ffffff;
+ #box_agreementContent{
+  color:white;
+  border: 1px solid #cdafaf82;
   width: 1000px;
   height: 700px;
   white-space: pre-wrap;
@@ -48,6 +67,7 @@ body {
   padding: 0 0 0 30px;
   border-radius: 5px;
   margin-top: 100px;
+  background-color:#655f5f;
 }
 
 #ctn_agreement{
@@ -104,7 +124,6 @@ box-shadow: 0 0 1px 1px rgba(195, 205, 196, 0.628);
 }
 
 
-
 #txt_loginName{
   width: 209px;
   height: 40px;
@@ -125,21 +144,7 @@ box-shadow: 0 0 1px 1px rgba(195, 205, 196, 0.628);
   margin-top: 10px;
 }
 
-#lbl_copyright{
-  color: #ffffff;
-  position: relative;
-  top: 25%;
-}
-footer {
-  background-color: #655f5f;
-  width: 100%;
-  opacity: 80%;
-  position: absolute;
-  bottom: -100px;
-  display: flex;
-  justify-content: center;
-  height: 40px;
-}
+
 
 h1{
   color: #ffffff;
@@ -151,13 +156,14 @@ h1{
 #img_logo {
   height: 30px;
   width: 40px;
+  padding: 5px;
 }
 #img_cart{
   height: 30px;
   width: 30px;
-  right: 3%;
+  right: 8%;
   top: 5px;
-  position: absolute;
+  position: fixed;
 }
 
 .tbl_menu{
@@ -165,12 +171,23 @@ h1{
   font-family: 'PT Sans', sans-serif;
 }
 
-#nav_bar{
-  background-color:#655f5f;
-  position: fixed;
-  width: 100%;
-  transition: top 0.3s; /* Transition effect when sliding down (and up) */
+.menu_container{
   display: flex;
+  flex-direction: row;
+  position: fixed;
+  height: 39px;
+  background-color:#655f5f;
+  width: 100%;
+}
+
+#nav_bar{
+  /* background-color:#655f5f; */
+  position: relative;
+  /* width: 100%; */
+  /* transition: top 0.3s; Transition effect when sliding down (and up) */
+  display: flex;
+  height: 39px;
+  transition: top 0.5s ease-out;
 }
 
 table a:link, a:visited, a:active {
@@ -190,10 +207,6 @@ a:hover{
 /* fix the color of the link for skype and email link */
 a:-webkit-any-link {
   color: #ffffff;
-}
-
-main{
-  min-height: calc(100vh-130px);
 }
 
 .menu{
@@ -227,32 +240,53 @@ main{
   }
 
 .fa-bars {
-  padding: 5px;
+  padding: 10px;
   margin: 10px;
 }
+
 
   @media (min-width: 550px) {
     nav > .fa-bars {
       display: none;
     }
 
-
   }
 
   @media (max-width: 550px) {
-    .tbl_menu {
-      display: none;
-    }
 
+    #nav_bar{
+      flex-direction: column;
+      width: -webkit-fill-available;
+      padding-right: 10%;
+    }
     .tbl_menu{
-      font-size: 10px;
+      display: none;
+
+    }
+    .tbl_menu >div{
+      margin: 5px;
     }
 
-    #nav_bar > table{
-      display: grid;
-      /* flex-direction: column; */
-      grid-auto-flow: column;
+  nav > table{
+    width: 100%;
+  }
+
+  nav tr{
+      display: flex;
+      flex-direction: column;
+      height: 170px;
+      align-items: center;
+      border-radius: 10px;
     }
+  .td_highlight{
+    background-color: #323232e8;
+    width: 100% ;
+    text-align: center;
+    border-radius: 1px;
+  }
+  nav td:hover{
+    background-color: #474646e8 ;
+  }
 
     #ctn_agreement, #box_agreementContent{
       width: 95%;
@@ -262,6 +296,10 @@ main{
     #lbl_comeBack{
       width: auto;
       left: 10%;
+    }
+
+    .cart{
+    display:flex;
     }
 
   }

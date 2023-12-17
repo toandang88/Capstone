@@ -1,8 +1,11 @@
 {
-  "name": "savvy-starter",
+  "name": "ThunderTalk",
   "version": "1.0.0",
   "description": "Capstone for cohort Nov 2023",
-  "scripts": {},
+  "scripts": {
+    "parcel-build": "parcel build index.html && cp _redirects ./dist/",
+    "serve": "parcel index.html"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,7 +20,11 @@
   },
   "dependencies": {
     "express": "^4.18.2",
+    "html-literal": "^1.1.0",
+    "lodash": "^4.17.21",
     "mammoth": "^1.6.0",
+    "navigo": "^8.11.1",
+    "parcel": "^2.10.3",
     "yargs-parser": ">=13.1.2"
   }
 }

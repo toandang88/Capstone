@@ -16,7 +16,7 @@
       "name": "Launch Chrome",
       "request": "launch",
       "type": "chrome",
-      "url": "http://localhost:5500/pages/profile.html",
+      "url": "http://localhost:5500/index.html",
       "webRoot": "${workspaceFolder}"
     }
 

@@ -102,18 +102,24 @@ label,li{
   .img_link,
   .cls_userData,
   .cls_zip,
-  .cls_state,
-  .flx_zip,
   .flx_states,
-  .flx_zipCodeAndStates,
   .editContainer,
+  .cls_state,
   .lst_friend {
     width: 90%;
     margin: 0 0 5px 10px;
   }
 
+  .flx_states{
+    justify-content: space-evenly;
+  }
+
   .lst_friend{
     width: 77%;
+  }
+
+  .editContainer{
+    justify-content: space-evenly;
   }
 
   #usr_data{
@@ -141,5 +147,17 @@ label,li{
 
   #lnk_edit{
     margin: 0px;
+  }
+
+  #lnk_upload,#lnk_delete{
+    width:20%;
+    text-align: center;
+  }
+  .img_link{
+    margin: 0;
+  }
+
+  #lnk_upload{
+    margin: 10px 0 0 0;
   }
 }
