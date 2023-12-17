@@ -1,8 +1,5 @@
-
-
-
 html,body{
-  height: 100%;
+  /* height: 100%; */
   margin: 0;
   padding: 0;
 }
@@ -10,17 +7,25 @@ html,body{
 body {
   background-color: #0d0c0cd7;
   opacity: 80%;
-  /* background-color: #655f5f;
-  opacity: 80%; */
   min-height: 100vh;
   position: relative;
   margin: 0;
   font-family: 'PT Sans', sans-serif;
-  /* display: grid;
-  grid-template-rows: 1fr auto; */
-  flex: 1;
-
+  display: flex;
+  flex-direction: column;
 }
+footer{
+  background-color: #655f5f;
+  text-align: center;
+  width: 100%;
+  opacity: 80%;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  color: white;
+  /* margin-top: auto; */
+}
+
 
 #lbl_holder{
 
@@ -28,7 +33,7 @@ body {
   border: none;;
   border-radius: 10px;
   border-color: #bdbdbd;
-  height: 90vh;
+  min-height: 100vh;
   width: 100%;
   top: 50px;
   display: flex;
@@ -119,7 +124,6 @@ box-shadow: 0 0 1px 1px rgba(195, 205, 196, 0.628);
 }
 
 
-
 #txt_loginName{
   width: 209px;
   height: 40px;
@@ -140,24 +144,7 @@ box-shadow: 0 0 1px 1px rgba(195, 205, 196, 0.628);
   margin-top: 10px;
 }
 
-#lbl_copyright{
-  color: #ffffff;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.footer {
-  background-color: #655f5f;
-  width: 100%;
-  opacity: 80%;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
 
-  height: 40px;
-}
 
 h1{
   color: #ffffff;
@@ -222,10 +209,6 @@ a:-webkit-any-link {
   color: #ffffff;
 }
 
-main{
-  min-height: calc(100vh-130px);
-}
-
 .menu{
   padding: 5px;
 }
@@ -267,11 +250,9 @@ main{
       display: none;
     }
 
-
   }
 
   @media (max-width: 550px) {
-
 
     #nav_bar{
       flex-direction: column;
@@ -289,6 +270,7 @@ main{
   nav > table{
     width: 100%;
   }
+
   nav tr{
       display: flex;
       flex-direction: column;

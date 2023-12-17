@@ -5,7 +5,7 @@ document.querySelector(".fa-bars").addEventListener("click", () => {
   document.querySelector("nav > table").classList.toggle("tbl_menu");
 });
 
-document.getElementById("btn_login").addEventListener("submit", event => {
+document.getElementById("submit_login").addEventListener("submit", event => {
   event.preventDefault();
   window.location.href = "../pages/roomchat.html";
 });

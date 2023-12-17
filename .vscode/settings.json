@@ -3,7 +3,7 @@
   "css.validate": false,
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "editor.fontLigatures": true,
   "editor.minimap.enabled": false,
@@ -23,7 +23,14 @@
       100, 120
   ],
   "cSpell.words": [
+    "chatbox",
+    "Comback",
+    "Freepik",
+    "navigo",
+    "Profileedit",
+    "storyset",
     "thundertalk",
-    "useragreement"
+    "useragreement",
+    "Viewnotfound"
   ]
 }
