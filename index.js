@@ -10,37 +10,68 @@ import * as profileEdit from "./scripts/profileEdit.js";
 import * as cart from "./scripts/cart.js";
 
 const router = new Navigo("/");
-let currentCity = "";
-if ("geolocation" in navigator) {
-  // Get the user's current location
-  navigator.geolocation.getCurrentPosition(
-    function(position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
 
-      // Use OpenStreetMap Nominatim for reverse geocoding
-      const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+async function getCurrentCity() {
+  return new Promise((resolve, reject) => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
 
-      fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-          // Extract the city information from the response
-          currentCity = data.address.city;
+          const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
 
-          // Print the current city
-          console.log(currentCity);
-        })
-        .catch(error => {
-          console.error("Error fetching location data:", error);
-        });
-    },
-    function(error) {
-      console.error("Error getting geolocation:", error.message);
+          fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+              const currentCity = data.address.city;
+              resolve(currentCity);
+            })
+            .catch(error => {
+              console.error("Error fetching location data:", error);
+              reject(error);
+            });
+        },
+        function(error) {
+          console.error("Error getting geolocation:", error.message);
+          reject(error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+      reject(new Error("Geolocation not supported"));
     }
-  );
-} else {
-  console.error("Geolocation is not supported by this browser.");
+  });
 }
+
+async function getTemp() {
+  try {
+    let currentCity = await getCurrentCity();
+
+    if (currentCity !== undefined) {
+      const openWeatherURL = `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=${currentCity}`;
+
+      const response = await fetch(openWeatherURL);
+      const data = await response.json();
+
+      const kelvinToFahrenheit = kelvinTemp =>
+        Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
+
+      let temperature = kelvinToFahrenheit(data.main.temp) + "°F";
+      let description = data.weather[0].main + " Sky";
+
+      store.Nav.weather = {
+        city: data.name,
+        temp: temperature,
+        description: description
+      };
+    }
+  } catch (error) {
+    console.error("Error in getTemp:", error);
+  }
+}
+
+getTemp();
 
 function render(state = store.Agreement) {
   document.querySelector("#root").innerHTML = `
@@ -48,6 +79,7 @@ function render(state = store.Agreement) {
     ${Main(state)}
     ${Footer()}`;
   router.updatePageLinks();
+
   afterRender(state);
 }
 
@@ -99,40 +131,40 @@ function afterRender(state) {
   }
 }
 
-router.hooks({
-  before: done => {
-    // Get request to retrieve the current weather data using the API key and providing a city name
-    axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=${currentCity}`
-      )
-      .then(response => {
-        // Convert Kelvin to Fahrenheit since OpenWeatherMap does provide otherwise
-        const kelvinToFahrenheit = kelvinTemp =>
-          Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
+// router.hooks({
+//   before: done => {
+//     // Get request to retrieve the current weather data using the API key and providing a city name
+//     axios
+//       .get(
+//         `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=${currentCity}`
+//       )
+//       .then(response => {
+//         // Convert Kelvin to Fahrenheit since OpenWeatherMap does provide otherwise
+//         const kelvinToFahrenheit = kelvinTemp =>
+//           Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
 
-        // Create an object to be stored in the Nav state from the response
-        let temperature = kelvinToFahrenheit(response.data.main.temp) + "°F";
-        let description = response.data.weather[0].main + " Sky";
-        store.Nav.weather = {
-          city: response.data.name,
-          temp: temperature,
-          feelsLike: kelvinToFahrenheit(response.data.main.feels_like),
-          description: description
-        };
-      });
+//         // Create an object to be stored in the Nav state from the response
+//         let temperature = kelvinToFahrenheit(response.data.main.temp) + "°F";
+//         let description = response.data.weather[0].main + " Sky";
+//         store.Nav.weather = {
+//           city: response.data.name,
+//           temp: temperature,
+//           // feelsLike: kelvinToFahrenheit(response.data.main.feels_like),
+//           description: description
+//         };
+//       });
 
-    done();
-  },
-  already: params => {
-    const view =
-      params && params.data && params.data.view
-        ? capitalize(params.data.view)
-        : "Home";
+//     done();
+//   },
+//   already: params => {
+//     const view =
+//       params && params.data && params.data.view
+//         ? capitalize(params.data.view)
+//         : "Home";
 
-    render(store[view]);
-  }
-});
+//     render(store[view]);
+//   }
+// });
 
 router
   .on({
