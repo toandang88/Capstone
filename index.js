@@ -2,8 +2,45 @@ import { Nav, Main, Footer } from "./components";
 import * as store from "./store";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
+import axios from "axios";
+import * as agreement from "./scripts/agreement.js";
+import * as login from "./scripts/login.js";
+import * as profile from "./scripts/profile.js";
+import * as profileEdit from "./scripts/profileEdit.js";
+import * as cart from "./scripts/cart.js";
 
 const router = new Navigo("/");
+let currentCity = "";
+if ("geolocation" in navigator) {
+  // Get the user's current location
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      // Use OpenStreetMap Nominatim for reverse geocoding
+      const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          // Extract the city information from the response
+          currentCity = data.address.city;
+
+          // Print the current city
+          console.log(currentCity);
+        })
+        .catch(error => {
+          console.error("Error fetching location data:", error);
+        });
+    },
+    function(error) {
+      console.error("Error getting geolocation:", error.message);
+    }
+  );
+} else {
+  console.error("Geolocation is not supported by this browser.");
+}
 
 function render(state = store.Agreement) {
   document.querySelector("#root").innerHTML = `
@@ -11,7 +48,91 @@ function render(state = store.Agreement) {
     ${Main(state)}
     ${Footer()}`;
   router.updatePageLinks();
+  afterRender(state);
 }
+
+function afterRender(state) {
+  // add menu toggle to bars icon in nav bar
+  document.querySelector(".fa-bars").addEventListener("click", () => {
+    document.querySelector("nav > div").classList.toggle("hidden_mobile");
+  });
+
+  if (state.view === "Agreement") {
+    agreement.agreementFunctions();
+  }
+
+  if (state.view === "Login") {
+    login.login();
+  }
+
+  // if (state.view === "Home") {
+  // }
+
+  if (state.view === "Profile") {
+    profile.clickEdit();
+  }
+
+  if (state.view === "Profileedit") {
+    profileEdit.clickCancel();
+    profileEdit.loadStates();
+  }
+
+  if (state.view === "Gifts") {
+    document.getElementById("btn_buy").addEventListener("click", function() {
+      window.location.href = "/Cart";
+    });
+  }
+
+  if (state.view === "Cart") {
+    profileEdit.loadStates();
+    cart.cartHandle();
+  }
+
+  if (state.view === "Confirm") {
+    document.getElementById("btn_home").addEventListener("click", function() {
+      window.location.href = "/Home";
+    });
+
+    document.getElementById("btn_goGift").addEventListener("click", function() {
+      window.location.href = "/Gifts";
+    });
+  }
+}
+
+router.hooks({
+  before: done => {
+    // Get request to retrieve the current weather data using the API key and providing a city name
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&q=${currentCity}`
+      )
+      .then(response => {
+        // Convert Kelvin to Fahrenheit since OpenWeatherMap does provide otherwise
+        const kelvinToFahrenheit = kelvinTemp =>
+          Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
+
+        // Create an object to be stored in the Nav state from the response
+        let temperature = kelvinToFahrenheit(response.data.main.temp) + "°F";
+        let description = response.data.weather[0].main + " Sky";
+        store.Nav.weather = {
+          city: response.data.name,
+          temp: temperature,
+          feelsLike: kelvinToFahrenheit(response.data.main.feels_like),
+          description: description
+        };
+      });
+
+    done();
+  },
+  already: params => {
+    const view =
+      params && params.data && params.data.view
+        ? capitalize(params.data.view)
+        : "Home";
+
+    render(store[view]);
+  }
+});
 
 router
   .on({

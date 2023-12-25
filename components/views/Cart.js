@@ -3,7 +3,6 @@ import itemPhoto from "../../assets/img/gifts/debossed.png";
 import cancelIcon from "../../assets/img/icons/close.png";
 import submitIcon from "../../assets/img/icons/ok-16.png";
 export default () => html`
-<main>
     <div class="flx_cartContainer" >
       <hr>
       <div id="cartDetail_Container">

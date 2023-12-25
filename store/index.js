@@ -11,3 +11,4 @@ export { default as Profileedit } from "./Profileedit";
 export { default as Home } from "./Home";
 export { default as Viewnotfound } from "./Viewnotfound";
 export { default as Links } from "./Links";
+export { default as Nav } from "./Nav";
