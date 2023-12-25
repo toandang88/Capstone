@@ -72,7 +72,7 @@ function afterRender(state) {
     profile.clickEdit();
   }
 
-  if (state.view === "Profileedit") {
+  if (state.view === "Edit") {
     profileEdit.clickCancel();
     profileEdit.loadStates();
   }
