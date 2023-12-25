@@ -1,7 +1,6 @@
 import html from "html-literal";
 
 export default () => html`
-<main>
     <div class="chat_container">
       <div class="chat_layout">
         <div class="chatRoomContainer" id="lst_user">
@@ -24,5 +23,4 @@ export default () => html`
         </div>
       </div>
     </div>
-  </main>
 `;

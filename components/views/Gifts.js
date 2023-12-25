@@ -3,8 +3,8 @@ import html from "html-literal";
 import productImg from "../../assets/img/gifts/debossed.png";
 
 export default () => html`
-  <main>
     <div id="body_container">
+      <hr>
       <div id="flx_giftContainer">
         <div id="img_giftContainer" class="border_topBottom">
           <img id="img_gift" src="${productImg}" />
@@ -38,5 +38,4 @@ export default () => html`
       </div>
       <hr>
     </div>
-  </main>
 `;
