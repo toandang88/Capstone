@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import html from "html-literal";
-import background from "../../assets/img/background.jpg";
-import personalPhoto from "../../assets/img/personalPhoto.jpeg";
+import background from "~/assets/img/background.jpg";
+import personalPhoto from "~/assets/img/personalPhoto.jpeg";
 export default () => html`
   <div id="lbl_holder">
     <div>
