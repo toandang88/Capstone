@@ -6,7 +6,6 @@ import axios from "axios";
 import * as agreement from "./scripts/agreement.js";
 import * as login from "./scripts/login.js";
 import * as profile from "./scripts/profile.js";
-import * as profileEdit from "./scripts/profileEdit.js";
 import * as cart from "./scripts/cart.js";
 
 const router = new Navigo("/");
@@ -101,12 +100,8 @@ function afterRender(state) {
   // }
 
   if (state.view === "Profile") {
-    profile.clickEdit();
-  }
-
-  if (state.view === "Edit") {
-    profileEdit.clickCancel();
-    profileEdit.loadStates();
+    profile.editProfile();
+    profile.uploadImage();
   }
 
   if (state.view === "Gifts") {
@@ -116,7 +111,7 @@ function afterRender(state) {
   }
 
   if (state.view === "Cart") {
-    profileEdit.loadStates();
+    profile.loadStates();
     cart.cartHandle();
   }
 

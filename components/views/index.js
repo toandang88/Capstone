@@ -6,7 +6,6 @@ export { default as Confirm } from "./Confirm";
 export { default as Contact } from "./Contact";
 export { default as Gifts } from "./Gifts";
 export { default as Profile } from "./Profile";
-export { default as Edit } from "./Edit";
 export { default as Login } from "./Login";
 export { default as Home } from "./Home";
 export { default as Viewnotfound } from "./Viewnotfound";
