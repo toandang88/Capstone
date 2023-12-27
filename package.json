@@ -1,10 +1,15 @@
 {
   "name": "ThunderTalk",
   "version": "1.0.0",
+  "type": "module",
   "description": "Capstone for cohort Nov 2023",
   "scripts": {
+    "app:watch": "nodemon --watch ./server -e js ./server/app.js",
     "parcel-build": "parcel build index.html && cp _redirects ./dist/",
-    "serve": "parcel index.html"
+    "serve": "parcel index.html",
+    "start": "concurrently \"npm run dev:front-end\" \"npm run dev:back-end\"",
+    "dev:front-end": "parcel index.html",
+    "dev:back-end": "node ./server/app.js"
   },
   "keywords": [],
   "author": "",
@@ -13,11 +18,13 @@
     "assert": "^2.1.0",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
+    "concurrently": "^8.2.2",
     "crypto-browserify": "^3.12.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.3.1",
     "node": "^16.13.1",
+    "nodemon": "^3.0.2",
     "path-browserify": "^1.0.1",
     "prettier": "1.19.1",
     "process": "^0.11.10",
