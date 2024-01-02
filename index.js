@@ -2,13 +2,13 @@ import { Nav, Main, Footer } from "./components";
 import * as store from "./store";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
-import axios from "axios";
-import * as agreement from "./scripts/agreement.js";
+// import axios from "axios";
 import * as login from "./scripts/login.js";
 import * as profile from "./scripts/profile.js";
 import * as cart from "./scripts/cart.js";
 
 const router = new Navigo("/");
+const PORT = process.env.PORT || "http://localhost:3000";
 
 async function getCurrentCity() {
   return new Promise((resolve, reject) => {
@@ -72,7 +72,7 @@ async function getTemp() {
 
 getTemp();
 
-function render(state = store.Agreement) {
+function render(state = store.Login) {
   document.querySelector("#root").innerHTML = `
     ${Nav(store.Links)}
     ${Main(state)}
@@ -87,12 +87,11 @@ function afterRender(state) {
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("nav > div").classList.toggle("hidden_mobile");
   });
-
-  if (state.view === "Agreement") {
-    agreement.agreementFunctions();
-  }
+  // Reset for the doNotDisplayAgain checkbox
+  // login.resetCheck(true);
 
   if (state.view === "Login") {
+    login.checkAgreement();
     login.login();
   }
 
@@ -100,8 +99,9 @@ function afterRender(state) {
   // }
 
   if (state.view === "Profile") {
-    profile.editProfile();
-    profile.uploadImage();
+    profile.editProfile(store, router);
+    profile.uploadImage(PORT);
+    // router.navigate("/Profile");
   }
 
   if (state.view === "Gifts") {

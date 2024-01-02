@@ -1,31 +1,56 @@
 import express from "express";
-import multer from "multer";
-import path from "path";
+import mongoose from "mongoose";
+
+import dotenv from "dotenv";
+import profile from "./routers/profiles.js";
+import upload from "./upload.js";
+
+dotenv.config();
 
 const app = express();
-const PORT = 3000;
+mongoose.set("strictQuery", true);
 
-const storage = multer.diskStorage({
-  destination: ".server/uploads",
-  filename: function(req, file, result) {
-    result(
-      null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-    );
-  }
+mongoose.connect(process.env.MONGODB, {
+  // Configuration options to remove deprecation warnings, just include them to remove clutter
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
+const db = mongoose.connection;
 
-const upload = multer({ storage: storage });
+db.on("error", console.error.bind(console, "Connection Error:"));
+db.once(
+  "open",
+  console.log.bind(console, "Successfully opened connection to Mongo!")
+);
 
-app.use("/uploads", express.static(".server/uploads"));
+const PORT = process.env.PORT || 3000;
 
-app.post("/uploads", upload.single("file"), (req, res) => {
-  const filePath = req.file.path;
-  console.log("File uploaded:", filePath);
+const cors = (req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type, Accept,Authorization,Origin"
+  );
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  next();
+};
 
-  res.send("File uploaded!");
-});
+app.use(cors);
+app.use(express.json());
+
+upload(app);
+
+app.use("/profiles", profile);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Backend Server is running on http://localhost:${PORT}`);
+});
+
+app.use((err, res) => {
+  console.error(err);
+  res.status(500).send("Internal Server Error");
 });
