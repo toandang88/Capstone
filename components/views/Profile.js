@@ -9,8 +9,8 @@ export default () => html`
     <div id="flx_profile">
       <div id="flx_image">
         <img id="img_profile" src="${imgPlaceholder}">
-        <form id="imageUpload" action="/uploads" method="POST" enctype="multipart/form-data" class="img_link" >
-        <input type="file" name="file" accept=".png,.jpg,.jpeg" id="fileInput">
+        <form id="imageUpload" action="" method="post" enctype="multipart/form-data" class="img_link" >
+        <input type="file" name="file" accept="image/*" id="fileInput">
         <button type="button" class="link_styles" id="uploadButton" >Upload</button>
         <button type="submit" id="submitButton">Submit</button>
           <a class="link_styles" id="lnk_delete">Delete</a>
@@ -20,34 +20,34 @@ export default () => html`
         <div class="editContainer">
           <div id="lnk_edit"  class="link_styles"><img src="${iconPencil}"></img> Edit profile</div>
         </div>
-        <label id="lbl_usrName" for="txt_userName">User name:</label>
-        <label id="lbl_email" for="txt_email">Email Address</label>
-        <label id="lbl_phone" for="txt_phone">Phone</label>
-        <label id="lbl_address" for="txt_address">Address</label>
-        <label id="lbl_city" for="txt_city">City</label>
-        <label id="lbl_zip" for="txt_zip">Zip code</label>
-        <label id="lbl_states" for="slt_states">States</label>
+        <label id="lbl_usrName" ">User name:</label>
+        <label id="lbl_email" >Email Address</label>
+        <label id="lbl_phone" >Phone</label>
+        <label id="lbl_address" >Address</label>
+        <label id="lbl_city" >City</label>
+        <label id="lbl_zip" >Zip code</label>
+        <label id="lbl_states" >States</label>
       </form>
       <form id="usr_dataEdit">
-        <label for="txt_userName" name="userName">User name</label>
-        <input type="text" class="cls_input cls_userData" id="txt_userName" placeholder="User Name" required>
-        <label for="txt_email" name="email">Email Address</label>
-        <input type="email" class="cls_input cls_userData" id="txt_email" placeholder="Email">
-        <label for="txt_phone" name="phone">Phone</label>
-        <input type="tel" class="cls_input cls_userData" id="txt_phone" placeholder="Enter 10 digit phone numbers">
-        <label for="txt_address" name="address">Address</label>
-        <input type="text" class="cls_input cls_userData" id="txt_address" placeholder="Address">
-        <label for="txt_city" name="city">City</label>
-        <input type="text" class="cls_input cls_userData" id="txt_city" placeholder="City">
+        <label for="username" name="username">User name</label>
+        <input type="text" class="cls_input cls_userData" id="username" placeholder="User Name" required>
+        <label for="email" name="email">Email Address</label>
+        <input type="email" class="cls_input cls_userData" id="email" placeholder="Email">
+        <label for="phone" name="phone">Phone</label>
+        <input type="tel" class="cls_input cls_userData" id="phone" placeholder="Enter 10 digit phone numbers">
+        <label for="address" name="address">Address</label>
+        <input type="text" class="cls_input cls_userData" id="address" placeholder="Address">
+        <label for="city" name="city">City</label>
+        <input type="text" class="cls_input cls_userData" id="city" placeholder="City">
 
         <div class="flx_zipCodeAndStates">
           <div class="flx_zip">
-            <label for="txt_zip">Zip code</label>
-            <input type="text" class="cls_input cls_zip" id="txt_zip" name="zip" placeholder="Zip Code">
+            <label for="zip">Zip code</label>
+            <input type="text" class="cls_input cls_zip" id="zip" name="zip" placeholder="Zip Code">
           </div>
           <div class="flx_states">
-            <label for="slt_states">States</label>
-            <select  class="cls_input cls_state" id="slt_states" name="states"></select>
+            <label for="state">States</label>
+            <select  class="cls_input cls_state" id="state" name="state"></select>
           </div>
         </div>
         <div class="editContainer">

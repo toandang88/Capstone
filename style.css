@@ -274,7 +274,7 @@ a:-webkit-any-link {
   border-radius: 50%;
   position: absolute;
   left: 15%;
-  top: 15%;
+  top: 20%;
   padding: 10px;
   border: #dbd8e6;
   object-fit: contain;
@@ -463,7 +463,7 @@ a:-webkit-any-link {
   grid-auto-flow:row;
 }
 
-#slt_states{
+#state{
   width: 150px;
   text-align: center;
   border-radius: 5px;
@@ -507,7 +507,7 @@ a:-webkit-any-link {
   display: grid;
   grid-auto-flow: row;
   left:10%;
-  margin-top:20%;
+  margin-top:10%;
   position: relative;
 }
 

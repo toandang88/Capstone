@@ -1,5 +1,4 @@
 export { default as About } from "./About";
-export { default as Agreement } from "./Agreement";
 export { default as Cart } from "./Cart";
 export { default as Comeback } from "./Comback";
 export { default as Confirm } from "./Confirm";
