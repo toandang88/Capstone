@@ -1,7 +1,4 @@
-import http from "http";
 import { Server } from "socket.io";
-const PORT = process.env.API_URL || 4040;
-// const PORT = process.env.SOCKETIO_URL || 4041;
 const generateMessage = text => ({
   text,
   sentAt: new Date().getTime()

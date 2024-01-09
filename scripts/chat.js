@@ -2,10 +2,10 @@ import io from "socket.io-client";
 import dotenv from "dotenv";
 dotenv.config();
 
-const socket = io(process.env.SOCKETIO_URL || 4040);
-// const socket = io(process.env.API_URL);
+const socket = io(process.env.API_URL);
 
 export function chat() {
+  // const socket = io(httpServer);
   const messages = document.getElementById("msg");
   const form = document.getElementById("msgForm");
   const input = document.getElementById("chatInput");
