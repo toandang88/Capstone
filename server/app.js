@@ -1,12 +1,16 @@
 import express from "express";
 import mongoose from "mongoose";
-
+import http from "http";
 import dotenv from "dotenv";
-import profile from "./routers/profiles.js";
 import upload from "./upload.js";
+import profile from "./routers/profiles.js";
+import gifts from "./routers/gifts.js";
+import cart from "./routers/cart.js";
+import chat from "./chat.js";
 
 dotenv.config();
 
+const PORT = process.env.PORT || 4040;
 const app = express();
 mongoose.set("strictQuery", true);
 
@@ -22,8 +26,6 @@ db.once(
   "open",
   console.log.bind(console, "Successfully opened connection to Mongo!")
 );
-
-const PORT = process.env.PORT || 3000;
 
 const cors = (req, res, next) => {
   res.setHeader(
@@ -42,15 +44,26 @@ const cors = (req, res, next) => {
 app.use(cors);
 app.use(express.json());
 
+app.use("/uploads", express.static("server/uploads"));
+
 upload(app);
+
+// const httpServer = http.createServer(app);
+chat(app);
 
 app.use("/profiles", profile);
 
+app.use("/gifts", gifts);
+app.use("/images", express.static("server/images"));
+
+app.use("/cart", cart);
+
 app.listen(PORT, () => {
-  console.log(`Backend Server is running on http://localhost:${PORT}`);
+  console.log(`Backend Server is running on ${process.env.API_URL}`);
 });
 
-app.use((err, res) => {
+app.use((err, res, next) => {
   console.error(err);
   res.status(500).send("Internal Server Error");
+  next;
 });

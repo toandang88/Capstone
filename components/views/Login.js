@@ -20,7 +20,7 @@ export default () => html`
       <input
         type="text"
         class="cls_input"
-        id="txt_loginName"
+        id="loginName"
         placeholder="Please enter your name"
         maxlength="25"
         required

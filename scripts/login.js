@@ -1,5 +1,6 @@
 import agreementPath from "../assets/docs/userAgreement.js";
 
+
 export function agreementFunctions() {
   if (agreementPath) {
     // Get the span element
@@ -13,12 +14,6 @@ export function agreementFunctions() {
       window.location.href = "/Comeback";
     });
   }
-}
-export function login() {
-  document.getElementById("submit_login").addEventListener("submit", event => {
-    event.preventDefault();
-    window.location.href = "/Home";
-  });
 }
 
 export function checkAgreement() {

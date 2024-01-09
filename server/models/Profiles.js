@@ -21,12 +21,15 @@ const profileSchema = new mongoose.Schema({
     type: String
   },
   zip: {
-    type: String
-    // validate: /^[0-9]*$/
+    type: String,
+    validate: /^[0-9]*$/
   },
   state: {
     type: String,
     validate: /^[A-Za-z ]*$/
+  },
+  img: {
+    type: String
   }
 });
 

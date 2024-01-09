@@ -13,21 +13,20 @@ export default () => html`
         <input type="file" name="file" accept="image/*" id="fileInput">
         <button type="button" class="link_styles" id="uploadButton" >Upload</button>
         <button type="submit" id="submitButton">Submit</button>
-          <a class="link_styles" id="lnk_delete">Delete</a>
         </form>
       </div>
-      <form id="usr_data">
+      <div id="usr_data">
         <div class="editContainer">
           <div id="lnk_edit"  class="link_styles"><img src="${iconPencil}"></img> Edit profile</div>
         </div>
-        <label id="lbl_usrName" ">User name:</label>
-        <label id="lbl_email" >Email Address</label>
-        <label id="lbl_phone" >Phone</label>
-        <label id="lbl_address" >Address</label>
-        <label id="lbl_city" >City</label>
-        <label id="lbl_zip" >Zip code</label>
-        <label id="lbl_states" >States</label>
-      </form>
+        <div>User name: <label id="lbl_usrName" "></label></div>
+        <div>Email Address: <label id="lbl_email" ></label></div>
+        <div>Phone:<label id="lbl_phone" ></label></div>
+        <div>Address: <label id="lbl_address" ></label></div>
+        <div>City: <label id="lbl_city" ></label></div>
+        <div>Zip code: <label id="lbl_zip" ></label></div>
+        <div>State: <label id="lbl_states" ></label></div>
+      </div>
       <form id="usr_dataEdit">
         <label for="username" name="username">User name</label>
         <input type="text" class="cls_input cls_userData" id="username" placeholder="User Name" required>
