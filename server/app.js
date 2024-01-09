@@ -9,7 +9,7 @@ import chat from "./chat.js";
 
 dotenv.config();
 
-const PORT = 4040;
+const PORT = process.env.API_URL || 4040;
 const app = express();
 mongoose.set("strictQuery", true);
 
