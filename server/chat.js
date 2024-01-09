@@ -1,12 +1,15 @@
 import { Server } from "socket.io";
+import { createServer } from "http";
+
+const PORT = 3000;
 const generateMessage = text => ({
   text,
   sentAt: new Date().getTime()
 });
 
-export default function chat(server) {
-  // const server = http.createServer(app);
-  const io = new Server(server, {
+export default function chat(app) {
+  const httpServer = createServer(app);
+  const io = new Server(httpServer, {
     cors: {
       origin: "*"
     }
@@ -28,6 +31,10 @@ export default function chat(server) {
     socket.on("disconnect", () => {
       io.emit("message", generateMessage("User has left the chat"));
     });
+  });
+
+  httpServer.listen(PORT, () => {
+    console.log(`WebSocket server is listening on port ${PORT}`);
   });
 
   // const PORT = process.env.PORT || 4041;
