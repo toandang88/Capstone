@@ -1,8 +1,27 @@
-# Savvy Coders Project Boilerplate Starter Kit
+# ThunderTalk. This is a capstone project when I learn at SavvyCoder.
 
 ## Overview
 
-This template repository contains several opinionated, 'starter' files and settings to help Savvy Coder students focus more time and energy on learning how to code and/or craft 'business logic' for projects and less time on configurations.
+This project purpose is for whom start to learn HTML, Javascripts, NodeJS, SocketIO, Express, RestfulAPI and MongoDB. Also, this is a pure SPA project. It does not use React or Vue framwork to build. Once you understand how does the SPA working, you can learn and build yourself project with React or Vue way easier.
+
+##Dependencies:
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "html-literal": "^1.1.0",
+    "lodash": "^4.17.21",
+    "mammoth": "^1.6.0",// for fecthing text content if needed
+    "mongoose": "^6.12.4",
+    "multer": "^1.4.5-lts.1",
+    "navigo": "^8.11.1",
+    "parcel": "^2.10.3",
+    "socket.io": "^4.7.3",
+    "socket.io-client": "^4.7.3",
+  }
+  
 
 In addition to a '.gitignore' and some VS Code specific extensions and settings, it includes the 'recommended' settings for:
 
@@ -10,20 +29,4 @@ In addition to a '.gitignore' and some VS Code specific extensions and settings,
 2. [Stylelint](stylelint.io)
 3. [Prettier](prettier.io)
 
-## Get Started
 
-**First and foremost,** make sure that your local machine is set up with all of the 'dev environment tooling' as per the instructions in the curriculum.
-
-Well, after establishing your directory structure on your local machine, (e.g. '~/Code/SavvyCoders'), clone the Savvy Starter Repo - essentially, there should be a button that says **Use this template.**
-
-> [Read more about using templates on GitHub here...](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template)
-
-Once this repo has been created on your GitHub, you can click on the button to 'clone' it as usual.
-
-Once it's `clone`d to your local machine, `cd` into the directory and **be sure to do:** `npm i` to get all of the dependencies installed. If you see any _errors_ (warnings are OK) on Windows, you may have to do `npm install`.
-
-Now, enter `code .` to open this project in VS Code, and look for a prompt to 'install some extensions' once inside VS Code (in the bottom `right` of your screen). You should install these.
-
-In your repo, feel free to update this README and make any other initial changes to files, etc. Then go ahead and do your usual `git` steps -- add, commit, and push.
-
-**Note:** This is a template repository, no need to 'fork it.
