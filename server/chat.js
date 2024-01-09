@@ -1,7 +1,7 @@
 import { Server } from "socket.io";
 import { createServer } from "http";
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const generateMessage = text => ({
   text,
   sentAt: new Date().getTime()

@@ -15,7 +15,7 @@ username = sessionStorage.getItem("username");
 
     try {
       const response = await axios.get(
-        `${process.env.API_URL}/profiles/${username}`
+        `${process.env.PORT}/profiles/${username}`
       );
       return response.data;
     } catch (error) {
@@ -155,7 +155,7 @@ username = sessionStorage.getItem("username");
 
   function postMethod(requestData) {
     axios
-      .post(`${process.env.API_URL}/profiles`, requestData)
+      .post(`${process.env.PORT}/profiles`, requestData)
       .then(response => {
         store.Profile.profile = response.data;
         responseData[0] = store.Profile.profile;
@@ -176,7 +176,7 @@ username = sessionStorage.getItem("username");
 
   function putMethod(username, requestData) {
     axios
-      .put(`${process.env.API_URL}/profiles/${username}`, requestData)
+      .put(`${process.env.PORT}/profiles/${username}`, requestData)
       .then(response => {
         store.Profile.profile = response.data;
         responseData[0] = store.Profile.profile;
@@ -199,7 +199,7 @@ username = sessionStorage.getItem("username");
     const form = document.getElementById("imageUpload");
     const fileInput = document.getElementById("fileInput");
 
-    form.setAttribute("action", `${process.env.API_URL}/uploads`);
+    form.setAttribute("action", `${process.env.PORT}/uploads`);
 
     document.addEventListener("click", function(event) {
       if (event.target.id === "uploadButton") {
@@ -219,7 +219,7 @@ username = sessionStorage.getItem("username");
         })
           .then(response => {
             imgName=response.data;
-            img.setAttribute("src", `${process.env.API_URL}/uploads/${response.data}`);
+            img.setAttribute("src", `${process.env.PORT}/uploads/${response.data}`);
             // deleteImage(responseData[0].img);
           })
           .catch(error => {
@@ -233,14 +233,14 @@ username = sessionStorage.getItem("username");
 
   function showImage(responseData){
     if(responseData[0].img!=undefined){
-      img.setAttribute("src",`${process.env.API_URL}/uploads/${responseData[0].img}`);
+      img.setAttribute("src",`${process.env.PORT}/uploads/${responseData[0].img}`);
     }else{
       img.setAttribute("src",imgPlaceholder);
     }
   }
 
   function deleteImage(filename){
-    axios.delete(`${process.env.API_URL}/uploads/${filename}`,{
+    axios.delete(`${process.env.PORT}/uploads/${filename}`,{
       "Access-Control-Allow-Headers": "X-Requested-With,content-type, Accept,Authorization,Origin",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE",

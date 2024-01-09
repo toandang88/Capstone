@@ -11,7 +11,7 @@ export function getCartCount() {
   return cartGiftLength;
 }
 
-export async function loadGift(router) {
+export async function loadGift() {
   let responseData;
 
   let cartCount = getCartCount();
@@ -20,7 +20,7 @@ export async function loadGift(router) {
   } else document.getElementById("cart_count").innerText = 0;
   async function getGiftsResponseData() {
     try {
-      const response = await axios.get(`${process.env.API_URL}/gifts`);
+      const response = await axios.get(`${process.env.PORT}/gifts`);
       return response.data;
     } catch (error) {
       console.log("Error", error);
@@ -34,7 +34,7 @@ export async function loadGift(router) {
       <div class="flx_giftContainer">
         <div class="border_topBottom img_giftContainer">
           <img class="img_gift" src="${
-            process.env.API_URL
+            process.env.PORT
           }/images/${gift.img.toString()}" />
         </div>
         <div class="gift_description">
