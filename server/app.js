@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import http from "http";
+// import http from "http";
 import dotenv from "dotenv";
 import upload from "./upload.js";
 import profile from "./routers/profiles.js";
@@ -10,7 +10,8 @@ import chat from "./chat.js";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 4040;
+// const PORT = "http://localhost:3456";
+const PORT = 4040;
 const app = express();
 mongoose.set("strictQuery", true);
 
@@ -48,9 +49,6 @@ app.use("/uploads", express.static("server/uploads"));
 
 upload(app);
 
-// const httpServer = http.createServer(app);
-chat(app);
-
 app.use("/profiles", profile);
 
 app.use("/gifts", gifts);
@@ -58,12 +56,17 @@ app.use("/images", express.static("server/images"));
 
 app.use("/cart", cart);
 
-app.listen(PORT, () => {
-  console.log(`Backend Server is running on ${process.env.API_URL}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Backend Server is running on ${process.env.API_URL}`);
+// });
 
 app.use((err, res, next) => {
   console.error(err);
   res.status(500).send("Internal Server Error");
   next;
 });
+
+const httpServer = app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+chat(httpServer);

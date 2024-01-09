@@ -2,7 +2,7 @@ import io from "socket.io-client";
 import dotenv from "dotenv";
 dotenv.config();
 
-const socket = io(process.env.SOCKETIO_URL) || 4041;
+const socket = io(process.env.SOCKETIO_URL || 4040);
 // const socket = io(process.env.API_URL);
 
 export function chat() {

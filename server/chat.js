@@ -1,13 +1,14 @@
 import http from "http";
 import { Server } from "socket.io";
-const PORT = process.env.SOCKETIO_URL || 4041;
+const PORT = process.env.API_URL || 4040;
+// const PORT = process.env.SOCKETIO_URL || 4041;
 const generateMessage = text => ({
   text,
   sentAt: new Date().getTime()
 });
 
-export default function chat(app) {
-  const server = http.createServer(app);
+export default function chat(server) {
+  // const server = http.createServer(app);
   const io = new Server(server, {
     cors: {
       origin: "*"
@@ -33,7 +34,7 @@ export default function chat(app) {
   });
 
   // const PORT = process.env.PORT || 4041;
-  server.listen(PORT, () => {
-    console.log(`WebSocket server is listening on port ${PORT}`);
-  });
+  // server.listen(PORT, () => {
+  //   console.log(`WebSocket server is listening on port ${PORT}`);
+  // });
 }
