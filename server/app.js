@@ -1,6 +1,5 @@
 import express from "express";
 import mongoose from "mongoose";
-// import http from "http";
 import dotenv from "dotenv";
 import upload from "./upload.js";
 import profile from "./routers/profiles.js";
@@ -10,7 +9,6 @@ import chat from "./chat.js";
 
 dotenv.config();
 
-// const PORT = "http://localhost:3456";
 const PORT = 4040;
 const app = express();
 mongoose.set("strictQuery", true);
