@@ -9,7 +9,7 @@ import chat from "./chat.js";
 
 dotenv.config();
 
-const PORT = process.env.API_URL || 4040;
+// const PORT = 3000;
 const app = express();
 mongoose.set("strictQuery", true);
 
@@ -54,17 +54,13 @@ app.use("/images", express.static("server/images"));
 
 app.use("/cart", cart);
 
-// app.listen(PORT, () => {
-//   console.log(`Backend Server is running on ${process.env.API_URL}`);
-// });
-
 app.use((err, res, next) => {
   console.error(err);
   res.status(500).send("Internal Server Error");
   next;
 });
 
-const httpServer = app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-chat(httpServer);
+// const httpServer = app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+chat(app);
