@@ -1,13 +1,14 @@
 import { Server } from "socket.io";
 import { createServer } from "http";
-
+import express from "express";
+const app = express();
 const PORT = process.env.PORT || 3000;
 const generateMessage = text => ({
   text,
   sentAt: new Date().getTime()
 });
 
-export default function chat(app) {
+export default function chat() {
   const httpServer = createServer(app);
   // const io = new Server(httpServer, {
   //   cors: {
@@ -22,7 +23,13 @@ export default function chat(app) {
   // });
   const io = new Server(httpServer, {
     cors: {
-      origin: false
+      origin: "*",
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      preflightContinue: false,
+      optionsSuccessStatus: 204,
+      allowedHeaders: [
+        "X-Requested-With,content-type, Accept,Authorization,Origin"
+      ]
     }
   });
 
