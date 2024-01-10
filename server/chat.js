@@ -9,15 +9,20 @@ const generateMessage = text => ({
 
 export default function chat(app) {
   const httpServer = createServer(app);
+  // const io = new Server(httpServer, {
+  //   cors: {
+  //     origin: `${process.env.FRONTEND_URL}`,
+  //     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  //     preflightContinue: false,
+  //     optionsSuccessStatus: 204,
+  //     allowedHeaders: [
+  //       "X-Requested-With,content-type, Accept,Authorization,Origin"
+  //     ]
+  //   }
+  // });
   const io = new Server(httpServer, {
     cors: {
-      origin: `${process.env.FRONTEND_URL}`,
-      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-      preflightContinue: false,
-      optionsSuccessStatus: 204,
-      allowedHeaders: [
-        "X-Requested-With,content-type, Accept,Authorization,Origin"
-      ]
+      origin: false
     }
   });
 
