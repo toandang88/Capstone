@@ -29,8 +29,9 @@ export default function chat(app) {
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       preflightContinue: false,
       optionsSuccessStatus: 204,
-      "Access-Control-Allow-Headers":
+      allowedHeaders: [
         "X-Requested-With,content-type, Accept,Authorization,Origin"
+      ]
     }
   });
 
