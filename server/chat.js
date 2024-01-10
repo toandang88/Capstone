@@ -1,6 +1,20 @@
 import { Server } from "socket.io";
 import { createServer } from "http";
 
+const cors = (req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type, Accept,Authorization,Origin"
+  );
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  next();
+};
+
 const PORT = process.env.PORT || 3000;
 const generateMessage = text => ({
   text,
@@ -11,7 +25,12 @@ export default function chat(app) {
   const httpServer = createServer(app);
   const io = new Server(httpServer, {
     cors: {
-      origin: "*"
+      origin: "*",
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      preflightContinue: false,
+      optionsSuccessStatus: 204,
+      "Access-Control-Allow-Headers":
+        "X-Requested-With,content-type, Accept,Authorization,Origin"
     }
   });
 
