@@ -8,7 +8,7 @@ import cart from "./routers/cart.js";
 // import chat from "./chat.js";
 
 dotenv.config();
-const PORT = 4040;
+const PORT = process.env.PORT || 4040;
 console.log(PORT);
 const app = express();
 mongoose.set("strictQuery", true);
