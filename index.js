@@ -2,13 +2,12 @@ import { Nav, Main, Footer } from "./components";
 import * as store from "./store";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
-// import axios from "axios";
 import * as login from "./scripts/login.js";
 import * as profile from "./scripts/profile.js";
 import * as cart from "./scripts/cart.js";
 import * as gifts from "./scripts/gifts.js";
 import * as confirm from "./scripts/confirm.js";
-import * as home from "./scripts/chat.js";
+// import * as home from "./scripts/chat.js";
 
 const router = new Navigo("/");
 let username = sessionStorage.getItem("username") || "";
@@ -126,9 +125,9 @@ function afterRender(state) {
     document.getElementById("img_logout").style.display = "block";
     document.getElementById("cart_count").style.display = "none";
   }
-  if (state.view === "Home") {
-    home.chat();
-  }
+  // if (state.view === "Home") {
+  //   home.chat();
+  // }
 
   if (state.view === "Profile") {
     profile.editProfile(store, username);

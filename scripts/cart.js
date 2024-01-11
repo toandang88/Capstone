@@ -35,7 +35,7 @@ export async function cartHandle(router) {
     cartDetailContainer.classList.add("cartDetail_Container");
 
     cartDetailContainer.innerHTML = `
-      <h1>You Dont Have Any Gifts In Cart. Please Go To "Gifts" To Select!!!!</h1>
+      <h1>You Don't Have Any Gifts In Cart. Please Go To "Gifts" To Select!!!!</h1>
     `;
     container.appendChild(cartDetailContainer);
   }else{
@@ -47,7 +47,7 @@ export async function cartHandle(router) {
   //get and return data of a gift by id
   async function getGiftsResponseData(id) {
     try {
-      const response = await axios.get(`${process.env.API_URL}/gifts/${id}`);
+      const response = await axios.get(`${process.env.BACKEND_API_URL}/gifts/${id}`);
       return response.data;
     } catch (error) {
       console.log("Error", error);
@@ -65,7 +65,7 @@ export async function cartHandle(router) {
 
     cartDetailContainer.innerHTML = `
       <div class="img_CartContainer">
-        <img class="img_Cart" src="${process.env.API_URL}/images/${responseData.img}">
+        <img class="img_Cart" src="${process.env.BACKEND_API_URL}/images/${responseData.img}">
       </div>
       <div class="cart_description">
         <div class="Cart_productNamePrice">
@@ -172,7 +172,7 @@ cartForm.addEventListener("submit", event =>{
   };
 
   axios
-  .post(`${process.env.API_URL}/cart`, requestData)
+  .post(`${process.env.BACKEND_API_URL}/cart`, requestData)
   .then(response => {
     response.status;
   })

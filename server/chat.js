@@ -2,7 +2,7 @@ import { Server } from "socket.io";
 import { createServer } from "http";
 import express from "express";
 const app = express();
-const PORT = process.env.BACKEND_API_URL || 3000;
+const PORT = process.env.BACKEND_API_URL || 4040;
 const generateMessage = text => ({
   text,
   sentAt: new Date().getTime()
