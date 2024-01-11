@@ -11,7 +11,7 @@ import { createServer } from "http";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.BACKEND_API_URL || 3000;
 const app = express();
 mongoose.set("strictQuery", true);
 
@@ -76,7 +76,6 @@ const cors = (req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
   next();
 };
-
 app.use(cors);
 app.use(express.json());
 

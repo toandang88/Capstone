@@ -20,7 +20,7 @@ export async function loadGift() {
   } else document.getElementById("cart_count").innerText = 0;
   async function getGiftsResponseData() {
     try {
-      const response = await axios.get(`${process.env.PORT}/gifts`);
+      const response = await axios.get(`${process.env.BACKEND_API_URL}/gifts`);
       return response.data;
     } catch (error) {
       console.log("Error", error);
@@ -34,7 +34,7 @@ export async function loadGift() {
       <div class="flx_giftContainer">
         <div class="border_topBottom img_giftContainer">
           <img class="img_gift" src="${
-            process.env.PORT
+            process.env.BACKEND_API_URL
           }/images/${gift.img.toString()}" />
         </div>
         <div class="gift_description">
