@@ -66,7 +66,7 @@ username = sessionStorage.getItem("username");
       viewContent.style.display = "flex";
       imgfunctions.style.display="none";
       editContent.style.display = "none";
-      showImage(responseData);
+      // showImage(responseData);
       //store in models before calling out to show in view page
       store.Profile.profile = responseData;
 
@@ -139,7 +139,7 @@ username = sessionStorage.getItem("username");
         city: inputList.city.value,
         zip: inputList.zip.value,
         state: inputList.state.value,
-        img: imgName
+        // img: imgName
       };
       viewContent.style.display = "flex";
       imgfunctions.style.display="none";
@@ -195,65 +195,65 @@ username = sessionStorage.getItem("username");
       });
   }
 
-  function uploadImage() {
-    const form = document.getElementById("imageUpload");
-    const fileInput = document.getElementById("fileInput");
+  // function uploadImage() {
+  //   const form = document.getElementById("imageUpload");
+  //   const fileInput = document.getElementById("fileInput");
 
-    form.setAttribute("action", `${process.env.BACKEND_API_URL}/uploads`);
+  //   form.setAttribute("action", `${process.env.BACKEND_API_URL}/uploads`);
 
-    document.addEventListener("click", function(event) {
-      if (event.target.id === "uploadButton") {
-        fileInput.click();
-      }
-    });
+  //   document.addEventListener("click", function(event) {
+  //     if (event.target.id === "uploadButton") {
+  //       fileInput.click();
+  //     }
+  //   });
 
-    fileInput.addEventListener("change", function(event) {
-      if (event.target.id === "fileInput") {
-        event.preventDefault();
+  //   fileInput.addEventListener("change", function(event) {
+  //     if (event.target.id === "fileInput") {
+  //       event.preventDefault();
 
-        const formData = new FormData(form);
-        axios.post(form.getAttribute("action"), formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-          .then(response => {
-            imgName=response.data;
-            img.setAttribute("src", `${process.env.BACKEND_API_URL}/uploads/${response.data}`);
-            // deleteImage(responseData[0].img);
-          })
-          .catch(error => {
-            console.error("Error:", error);
-          });
-      }
-    });
-  }
+  //       const formData = new FormData(form);
+  //       axios.post(form.getAttribute("action"), formData, {
+  //         headers: {
+  //           'Content-Type': 'multipart/form-data',
+  //         },
+  //       })
+  //         .then(response => {
+  //           imgName=response.data;
+  //           img.setAttribute("src", `${process.env.BACKEND_API_URL}/uploads/${response.data}`);
+  //           // deleteImage(responseData[0].img);
+  //         })
+  //         .catch(error => {
+  //           console.error("Error:", error);
+  //         });
+  //     }
+  //   });
+  // }
 
-  uploadImage();
+  // uploadImage();
 
-  function showImage(responseData){
-    if(responseData[0].img!=undefined){
-      img.setAttribute("src",`${process.env.BACKEND_API_URL}/uploads/${responseData[0].img}`);
-    }else{
-      img.setAttribute("src",imgPlaceholder);
-    }
-  }
+  // function showImage(responseData){
+  //   if(responseData[0].img!=undefined){
+  //     img.setAttribute("src",`${process.env.BACKEND_API_URL}/uploads/${responseData[0].img}`);
+  //   }else{
+  //     img.setAttribute("src",imgPlaceholder);
+  //   }
+  // }
 
-  function deleteImage(filename){
-    axios.delete(`${process.env.BACKEND_API_URL}/uploads/${filename}`,{
-      "Access-Control-Allow-Headers": "X-Requested-With,content-type, Accept,Authorization,Origin",
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE",
-      "Access-Control-Allow-Credentials": true
-    })
-    .then(response =>{
-      console.log(response.data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      // Handle the error as needed
-    });
-  }
+  // function deleteImage(filename){
+  //   axios.delete(`${process.env.BACKEND_API_URL}/uploads/${filename}`,{
+  //     "Access-Control-Allow-Headers": "X-Requested-With,content-type, Accept,Authorization,Origin",
+  //     "Access-Control-Allow-Origin": "*",
+  //     "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE",
+  //     "Access-Control-Allow-Credentials": true
+  //   })
+  //   .then(response =>{
+  //     console.log(response.data);
+  //   })
+  //   .catch(error => {
+  //     console.error('Error:', error);
+  //     // Handle the error as needed
+  //   });
+  // }
 
 }
 
