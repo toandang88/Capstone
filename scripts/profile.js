@@ -1,7 +1,7 @@
 import axios from "axios";
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 import imgPlaceholder from "../assets/img/icons/photo_placeholder.png";
-dotenv.config();
+// dotenv.config();
 
 export async function editProfile(store, username) {
   const viewContent = document.getElementById("usr_data");
@@ -15,7 +15,7 @@ username = sessionStorage.getItem("username");
 
     try {
       const response = await axios.get(
-        `${process.env.PORT}/profiles/${username}`
+        `${process.env.BACKEND_API_URL}/profiles/${username}`
       );
       return response.data;
     } catch (error) {
@@ -155,7 +155,7 @@ username = sessionStorage.getItem("username");
 
   function postMethod(requestData) {
     axios
-      .post(`${process.env.PORT}/profiles`, requestData)
+      .post(`${process.env.BACKEND_API_URL}/profiles`, requestData)
       .then(response => {
         store.Profile.profile = response.data;
         responseData[0] = store.Profile.profile;
@@ -176,7 +176,7 @@ username = sessionStorage.getItem("username");
 
   function putMethod(username, requestData) {
     axios
-      .put(`${process.env.PORT}/profiles/${username}`, requestData)
+      .put(`${process.env.BACKEND_API_URL}/profiles/${username}`, requestData)
       .then(response => {
         store.Profile.profile = response.data;
         responseData[0] = store.Profile.profile;
@@ -199,7 +199,7 @@ username = sessionStorage.getItem("username");
     const form = document.getElementById("imageUpload");
     const fileInput = document.getElementById("fileInput");
 
-    form.setAttribute("action", `${process.env.PORT}/uploads`);
+    form.setAttribute("action", `${process.env.BACKEND_API_URL}/uploads`);
 
     document.addEventListener("click", function(event) {
       if (event.target.id === "uploadButton") {
@@ -219,7 +219,7 @@ username = sessionStorage.getItem("username");
         })
           .then(response => {
             imgName=response.data;
-            img.setAttribute("src", `${process.env.PORT}/uploads/${response.data}`);
+            img.setAttribute("src", `${process.env.BACKEND_API_URL}/uploads/${response.data}`);
             // deleteImage(responseData[0].img);
           })
           .catch(error => {
@@ -233,14 +233,14 @@ username = sessionStorage.getItem("username");
 
   function showImage(responseData){
     if(responseData[0].img!=undefined){
-      img.setAttribute("src",`${process.env.PORT}/uploads/${responseData[0].img}`);
+      img.setAttribute("src",`${process.env.BACKEND_API_URL}/uploads/${responseData[0].img}`);
     }else{
       img.setAttribute("src",imgPlaceholder);
     }
   }
 
   function deleteImage(filename){
-    axios.delete(`${process.env.PORT}/uploads/${filename}`,{
+    axios.delete(`${process.env.BACKEND_API_URL}/uploads/${filename}`,{
       "Access-Control-Allow-Headers": "X-Requested-With,content-type, Accept,Authorization,Origin",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE",

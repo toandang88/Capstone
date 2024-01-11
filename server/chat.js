@@ -2,7 +2,7 @@ import { Server } from "socket.io";
 import { createServer } from "http";
 import express from "express";
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.BACKEND_API_URL || 3000;
 const generateMessage = text => ({
   text,
   sentAt: new Date().getTime()
@@ -55,7 +55,7 @@ export default function chat() {
     console.log(`WebSocket server is listening on port ${PORT}`);
   });
 
-  // const PORT = process.env.PORT || 4041;
+  // const PORT = process.env.BACKEND_API_URL || 4041;
   // server.listen(PORT, () => {
   //   console.log(`WebSocket server is listening on port ${PORT}`);
   // });
