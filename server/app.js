@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import upload from "./upload.js";
+// import upload from "./upload.js";
 import profile from "./routers/profiles.js";
 import gifts from "./routers/gifts.js";
 import cart from "./routers/cart.js";
@@ -42,9 +42,9 @@ const cors = (req, res, next) => {
 app.use(cors);
 app.use(express.json());
 
-app.use("/uploads", express.static("server/uploads"));
+// app.use("/uploads", express.static("server/uploads"));
 
-upload(app);
+// upload(app);
 
 app.use("/profiles", profile);
 
