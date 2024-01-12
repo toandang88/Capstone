@@ -7,7 +7,7 @@ import * as profile from "./scripts/profile.js";
 import * as cart from "./scripts/cart.js";
 import * as gifts from "./scripts/gifts.js";
 import * as confirm from "./scripts/confirm.js";
-import * as home from "./scripts/chat.js";
+import { chat } from "./scripts/clientChat.js";
 
 const router = new Navigo("/");
 let username = sessionStorage.getItem("username") || "";
@@ -65,6 +65,10 @@ async function getTemp() {
         temp: temperature,
         description: description
       };
+      const weatherContainer = document.querySelector(".weatherContainer");
+      if (data) {
+        weatherContainer.innerHTML = `${store.Nav.weather.city} ${store.Nav.weather.temp} ${store.Nav.weather.description}`;
+      }
     }
   } catch (error) {
     console.error("Error in getTemp:", error);
@@ -119,6 +123,7 @@ function afterRender(state) {
         router.navigate("/Home");
       });
   }
+
   if (state.view === "Comeback") {
     document.getElementById("menu").style.display = "none";
     document.getElementById("img_cart").style.display = "none";
@@ -126,7 +131,7 @@ function afterRender(state) {
     document.getElementById("cart_count").style.display = "none";
   }
   if (state.view === "Home") {
-    home.chat();
+    chat(username);
   }
 
   if (state.view === "Profile") {

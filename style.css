@@ -776,26 +776,22 @@ label,li{
 .chat_layout{
   width: 80vw;
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 100%;
   grid-template-rows: 90% 5%;
-  gap: 5px 10px;
+  gap: 5px;
   grid-template-areas:
-  "chatRoomContainer chatContentContainer"
-  "chatRoomContainer chatInputContainer";
+  "chatContentContainer"
+  "chatInputContainer";
   font-size: 20px;
   align-items: center;
   color: #ffffff;
   justify-content: space-between;
 }
 
-.chatRoomContainer { grid-area: chatRoomContainer; }
+
 .chatContentContainer { grid-area: chatContentContainer; }
 .chatInputContainer { grid-area: chatInputContainer; }
 
-.chatRoomContainer{
-  display: none;
-
-}
 .cls_chatbox{
   width: 85%;
   position: relative;
@@ -824,35 +820,21 @@ label,li{
 .chatInputContainer button:hover{
   background-color: rgba(34, 117, 206, 0.814);
 }
-.chatRoomContainer ul{
-  width: 120px;
-  height: 100%;
-  text-align: left;
-}
-.chatRoomContainer p{
-  text-align: center;
-}
+
 
 hr {
   color:#8c7979;
   opacity: 50%;
 }
 
-.chatRoomContainer{
-  height: 100%;
-  border-radius: 5px;
-  -webkit-box-shadow: 0 0 5px 2px #8c7979;
-  -moz-box-shadow: 0 0 5px 2px #8c7979;
-  box-shadow: 0 0 2px 2px #8c7979;
-  text-align: center;
-  background-color: #00000040;
-}
+
 
 .chatContentContainer{
   -webkit-box-shadow: 0 0 5px 2px #8c7979;
   -moz-box-shadow: 0 0 5px 2px #8c7979;
   box-shadow: 0 0 2px 2px #8c7979;
   height: 100%;
+  width: inherit;
   border-radius: 5px;
   background-color: #00000040;
   overflow-x: hidden;
@@ -882,6 +864,7 @@ hr {
 .cls_messages{
   margin: 5px;
   padding-left: 10px;
+  height: 100px;
 }
 
 .message_box{
@@ -897,6 +880,7 @@ hr {
 
 
 .chatInputContainer{
+  width: inherit;
   border-radius: 5px;
   -webkit-box-shadow: 0 0 5px 2px #8c7979;
   -moz-box-shadow: 0 0 5px 2px #8c7979;
@@ -1089,14 +1073,7 @@ hr {
     justify-content: space-between;
   }
 
-  .chatRoomContainer{
-    display: none;
-    width: auto;
-    height: auto;
-    position: fixed;
-    top: 50px;
-    background-color: #000000;
-  }
+
 
 
     /* ------------------------  User Agreement ----------------------------------  */
