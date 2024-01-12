@@ -1,22 +1,43 @@
 import { io } from "socket.io-client";
 import dotenv from "dotenv";
 dotenv.config().parsed;
-console.log(process.env.BACKEND_API_URL);
-const socket = io(process.env.BACKEND_API_URL || 4040);
 
-export function chat() {
-  // const socket = io(httpServer);
+// const socket = io(process.env.BACKEND_API_URL || 4040, { autoConnect: false });
+export function chat(username) {
+  const socket = io(process.env.BACKEND_API_URL || 4040, {
+    auth: {
+      serverOffset: 0
+    }
+  });
+  const chatContainer = document.getElementById("chatContentContainer");
   const messages = document.getElementById("msg");
   const form = document.getElementById("msgForm");
   const input = document.getElementById("chatInput");
 
-  const username = sessionStorage.getItem("username");
-
-  socket.on("connect", () => {
-    console.log("Connected to server");
+  socket.on("join", () => {
+    socket.emit("getPreviousMessages");
   });
 
-  socket.on("message", msg => {
+  socket.on("previousMessages", previousMessages => {
+    previousMessages.forEach(msg => {
+      const itemContainer = document.createElement("div");
+      itemContainer.setAttribute("class", "messageContainer");
+      messages.appendChild(itemContainer);
+
+      const item = document.createElement("div");
+      item.setAttribute("class", "message_box");
+      item.textContent = msg;
+      messages.appendChild(item);
+    });
+    chatContainer.scrollTop = messages.scrollHeight;
+  });
+  // Send the username to the server when connecting
+  socket.on("connect", () => {
+    socket.emit("join", { username });
+  });
+
+  // Handle incoming messages
+  socket.on("message", (msg, serverOffset) => {
     const itemContainer = document.createElement("div");
     itemContainer.setAttribute("class", "messageContainer");
     messages.appendChild(itemContainer);
@@ -24,7 +45,16 @@ export function chat() {
     item.setAttribute("class", "message_box");
     item.textContent = msg.text;
     messages.appendChild(item);
-    window.scrollTo(0, document.body.scrollHeight);
+    chatContainer.scrollTop = messages.scrollHeight;
+    socket.auth.serverOffset = serverOffset;
+  });
+
+  socket.on("disconnect", () => {
+    console.log("Disconnected from server. Attempting to reconnect...");
+    setTimeout(() => {
+      // Reconnect after a delay
+      socket.connect();
+    }, 2000); // Adjust the delay as needed
   });
 
   form.addEventListener("submit", event => {
@@ -48,6 +78,8 @@ export function chat() {
       item.textContent = inputList.chatInput.value;
       itemContainer.appendChild(item);
       input.value = "";
+      input.focus();
+      chatContainer.scrollTop = messages.scrollHeight;
     }
   });
 }

@@ -1,15 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
-// import dotenv from "dotenv";
 import upload from "./upload.js";
 import profile from "./routers/profiles.js";
 import gifts from "./routers/gifts.js";
 import cart from "./routers/cart.js";
 import chat from "./chat.js";
 
-// dotenv.config();
-// const PORT = process.env.PORT || 4040;
-// console.log(PORT);
 const app = express();
 mongoose.set("strictQuery", true);
 
