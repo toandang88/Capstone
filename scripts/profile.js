@@ -1,6 +1,7 @@
 import axios from "axios";
 // import dotenv from "dotenv";
 import imgPlaceholder from "../assets/img/icons/photo_placeholder.png";
+
 // dotenv.config();
 
 export async function editProfile(store, username) {
@@ -48,13 +49,16 @@ username = sessionStorage.getItem("username");
         viewContent.style.display = "flex";
         imgfunctions.style.display="none";
         editContent.style.display = "none";
+        img.setAttribute("src",`${process.env.BACKEND_API_URL}/uploads/${responseData[0].img}`);
       });
     }
   } catch (error) {
     console.log("Error fetching user data", error);
   }
 
+
   function profileview(username) {
+
     //if the username is not in DB, show the username only which is user used to login
     if (username != responseData[0]?.username) {
       viewContent.style.display = "flex";
@@ -66,7 +70,8 @@ username = sessionStorage.getItem("username");
       viewContent.style.display = "flex";
       imgfunctions.style.display="none";
       editContent.style.display = "none";
-      // showImage(responseData);
+      showImage(responseData);
+
       //store in models before calling out to show in view page
       store.Profile.profile = responseData;
 
@@ -130,6 +135,7 @@ username = sessionStorage.getItem("username");
   if (usrDataEditForm) {
     usrDataEditForm.addEventListener("submit", event => {
       event.preventDefault();
+      const userImageName = document.getElementById("img_profile").getAttribute("src");
       const inputList = event.target.elements;
       const requestData = {
         username: inputList.username.value,
@@ -139,7 +145,7 @@ username = sessionStorage.getItem("username");
         city: inputList.city.value,
         zip: inputList.zip.value,
         state: inputList.state.value,
-        // img: imgName
+        img: userImageName.split("/").pop()
       };
       viewContent.style.display = "flex";
       imgfunctions.style.display="none";
@@ -195,65 +201,68 @@ username = sessionStorage.getItem("username");
       });
   }
 
-  // function uploadImage() {
-  //   const form = document.getElementById("imageUpload");
-  //   const fileInput = document.getElementById("fileInput");
+  function uploadImage() {
+    const form = document.getElementById("imageUpload");
+    const fileInput = document.getElementById("fileInput");
 
-  //   form.setAttribute("action", `${process.env.BACKEND_API_URL}/uploads`);
+    form.setAttribute("action", `${process.env.BACKEND_API_URL}/uploads`);
 
-  //   document.addEventListener("click", function(event) {
-  //     if (event.target.id === "uploadButton") {
-  //       fileInput.click();
-  //     }
-  //   });
+    document.addEventListener("click", function(event) {
+      if (event.target.id === "uploadButton") {
+        fileInput.click();
+      }
+    });
 
-  //   fileInput.addEventListener("change", function(event) {
-  //     if (event.target.id === "fileInput") {
-  //       event.preventDefault();
+    fileInput.addEventListener("change", function(event) {
 
-  //       const formData = new FormData(form);
-  //       axios.post(form.getAttribute("action"), formData, {
-  //         headers: {
-  //           'Content-Type': 'multipart/form-data',
-  //         },
-  //       })
-  //         .then(response => {
-  //           imgName=response.data;
-  //           img.setAttribute("src", `${process.env.BACKEND_API_URL}/uploads/${response.data}`);
-  //           // deleteImage(responseData[0].img);
-  //         })
-  //         .catch(error => {
-  //           console.error("Error:", error);
-  //         });
-  //     }
-  //   });
-  // }
+      if (event.target.id === "fileInput") {
+        event.preventDefault();
+        const oldImageName = document.getElementById("img_profile").getAttribute("src");
 
-  // uploadImage();
+        const formData = new FormData(form);
+        axios.post(form.getAttribute("action"), formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+          .then(response => {
+            imgName=response.data;
 
-  // function showImage(responseData){
-  //   if(responseData[0].img!=undefined){
-  //     img.setAttribute("src",`${process.env.BACKEND_API_URL}/uploads/${responseData[0].img}`);
-  //   }else{
-  //     img.setAttribute("src",imgPlaceholder);
-  //   }
-  // }
 
-  // function deleteImage(filename){
-  //   axios.delete(`${process.env.BACKEND_API_URL}/uploads/${filename}`,{
-  //     "Access-Control-Allow-Headers": "X-Requested-With,content-type, Accept,Authorization,Origin",
-  //     "Access-Control-Allow-Origin": "*",
-  //     "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE",
-  //     "Access-Control-Allow-Credentials": true
-  //   })
-  //   .then(response =>{
-  //     console.log(response.data);
-  //   })
-  //   .catch(error => {
-  //     console.error('Error:', error);
-  //     // Handle the error as needed
-  //   });
-  // }
+            console.log(imgName);
+            img.setAttribute("src", `${process.env.BACKEND_API_URL}/uploads/${response.data}`);
+            // deleteImage(responseData[0].img);
+            deleteImage(oldImageName.split("/").pop())
+          })
+          .catch(error => {
+            console.error("Error:", error);
+          });
+      }
+    });
+  }
+
+  uploadImage();
+
+  function showImage(responseData){
+    if( responseData[0].img!=""){
+      img.setAttribute("src",`${process.env.BACKEND_API_URL}/uploads/${responseData[0].img}`);
+    }else{
+      img.setAttribute("src",imgPlaceholder);
+    }
+  }
+
+  function deleteImage(filename){
+    if(!filename.startsWith("photo_placeholder"))
+    axios.delete(`${process.env.BACKEND_API_URL}/uploads/${filename}`,
+    {mode:"cors"})
+    .then(response =>{
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Handle the error as needed
+    });
+  }
 
 }
 

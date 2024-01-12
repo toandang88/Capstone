@@ -1,8 +1,8 @@
 // import html from "html-literal";
 import axios from "axios";
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 
-dotenv.config();
+// dotenv.config();
 
 //make count for the gifts in cart
 export function getCartCount() {
